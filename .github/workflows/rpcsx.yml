@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Setup dependencies
       run: |
-        sudo dnf install -y git cmake lld gcc-c++ gcc libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel spirv-tools-devel xbyak-devel
+        sudo dnf install -y git cmake lld clang libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel spirv-tools-devel xbyak-devel
         git config --global --add safe.directory '*'
 
     - name: Checkout
@@ -35,7 +35,7 @@ jobs:
         cmake -B build
         cmake --build build -j4
       env:
-        LDFLAGS: -Wl,--no-relax,-fPIC
+        xLDFLAGS: 0
 
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
