@@ -24,9 +24,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
+        repo: RPCSX/rpcsx
+        ref: master
         submodules: recursive
-
-
         
     - name: Build RPCSX
       run: |
