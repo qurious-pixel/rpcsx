@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(rpcsx)
+project(rpcsx LANGUAGES C CXX)
 
 set(CMAKE_CXX_EXTENSIONS off)
 set(CMAKE_CXX_STANDARD 23)
