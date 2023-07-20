@@ -17,15 +17,17 @@ jobs:
     container:
       image: fedora:latest
     steps:
+    - name: Setup dependencies
+      run: |
+        sudo dnf install -y git cmake libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel xbyak-devel
+        git config --global --add safe.directory '*'
     - name: Checkout
       uses: actions/checkout@v3
       with:
         submodules: recursive
 
-    - name: Setup dependencies
-      run: |
-        sudo dnf install -y cmake libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel xbyak-devel
 
+        
     - name: Build RPCSX
       run: |
         cmake -B build
