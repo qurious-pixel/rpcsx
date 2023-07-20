@@ -2,13 +2,6 @@ name: Build RPCSX
 
 on:
   push:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
-  pull_request:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
   workflow_dispatch:
 
 jobs:
@@ -17,9 +10,9 @@ jobs:
     container:
       image: fedora:latest
     steps:
-    - name: Setup git
+    - name: Setup dependencies
       run: |
-        sudo dnf install -y git
+        sudo dnf install -y git cmake libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel xbyak-devel
         git config --global --add safe.directory '*'
 
     - name: Checkout
@@ -29,10 +22,6 @@ jobs:
         ref: master
         submodules: recursive
 
-    - name: Setup dependencies
-      run: |
-        sudo dnf install -y cmake libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel xbyak-devel
-    
     - name: Setup SPIRV-Cross
       run: |
         git clone https://github.com/KhronosGroup/SPIRV-Cross 
