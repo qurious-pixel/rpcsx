@@ -35,7 +35,7 @@ jobs:
         cmake -B build
         cmake --build build -j4
       env:
-        LDFLAGS: -fPIC,-Wl,--no-relax
+        LDFLAGS: -Wl,--no-relax,-fPIC
 
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
