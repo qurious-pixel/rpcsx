@@ -14,8 +14,9 @@ on:
 jobs:
   build-rpcsx:
     runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
     steps:
-
     - name: Checkout
       uses: actions/checkout@v3
       with:
@@ -23,11 +24,7 @@ jobs:
 
     - name: Setup dependencies
       run: |
-        sudo apt update
-        sudo apt install build-essential libunwind-dev \
-        libglfw3-dev libvulkan-dev vulkan-validationlayers-dev \
-        spirv-tools glslang-tools libspirv-cross-c-shared-dev \
-        libxbyak-dev
+        sudo dnf install -y cmake libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel xbyak-devel
 
     - name: Build RPCSX
       run: |
