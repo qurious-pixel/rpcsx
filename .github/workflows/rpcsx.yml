@@ -35,6 +35,7 @@ jobs:
         cmake -B build
         cmake --build build -j4
       env:
+        CC: clang
         CXX: clang++
 
     - name: Upload RPCSX
