@@ -28,7 +28,7 @@ jobs:
         cd SPIRV-Cross 
         mkdir build && cd build 
         cmake .. && cmake --build . 
-        sudo make install
+        make install
         
     - name: RPCSX (Fixes)
       run: |
