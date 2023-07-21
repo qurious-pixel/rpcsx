@@ -30,6 +30,10 @@ jobs:
         cmake .. && cmake --build . 
         sudo make install
 
+    - name: RPCSX (Fixes)
+      run: |
+        sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
+        
     - name: Build RPCSX
       run: |
         cmake -B build
