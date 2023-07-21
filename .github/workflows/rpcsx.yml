@@ -8,11 +8,11 @@ jobs:
   build-rpcsx:
     runs-on: ubuntu-latest
     container:
-      image: fedora:latest
+      image: opensuse/tumbleweed:latest
     steps:
     - name: Setup dependencies
       run: |
-        sudo dnf install -y git cmake gcc-c++ gcc libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel spirv-tools-devel xbyak-devel
+        zypper install -y git cmake libunwind-devel libglfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel xbyak-devel
         git config --global --add safe.directory '*'
     - name: Checkout
       uses: actions/checkout@v3
