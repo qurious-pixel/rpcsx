@@ -1,16 +1,6 @@
 name: Formatting check
 
 on:
-  push:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
-      - '3rdparty/*'
-  pull_request:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
-      - '3rdparty/*'
   workflow_dispatch:
 
 jobs:
