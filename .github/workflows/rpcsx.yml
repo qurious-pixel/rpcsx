@@ -14,6 +14,7 @@ jobs:
       run: |
         zypper install -y git cmake libunwind-devel libglfw-devel vulkan-devel spirv-tools glslang-devel gcc-c++ gcc spirv-tools-devel 
         git config --global --add safe.directory '*'
+        
     - name: Checkout
       uses: actions/checkout@v3
       with:
@@ -28,10 +29,16 @@ jobs:
         mkdir build && cd build 
         cmake .. && cmake --build . 
         sudo make install
+        
+    - name: RPCSX (Fixes)
+      run: |
+        sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
+        
     - name: Build RPCSX
       run: |
         cmake -B build
         cmake --build build -j4
+        
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
       with:
