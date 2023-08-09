@@ -13,4 +13,4 @@ mkdir -p AppDir/usr/share/icons && cp ./AppDir/${BINNAME}.png ./AppDir/usr/share
 mkdir -p AppDir/usr/share/icons/hicolor/512x512/apps && cp ./AppDir/${BINNAME}.png ./AppDir/usr/share/icons/hicolor/512x512/apps
 
 chmod a+x appimagetool
-./appimagetool AppDir/ ${BINNAME}.AppImage
+ARCH=x86_64 ./appimagetool AppDir/ ${BINNAME}.AppImage
