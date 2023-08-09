@@ -14,13 +14,21 @@ jobs:
         repository: RPCSX/rpcsx
         ref: master
         submodules: recursive
-
+    - name: Checkout AppImage Repo
+      uses: actions/checkout@v3
+      with:
+          clean: false
+          path: ci
+          
     - name: Setup dependencies
       run: |
         sudo apt update
         sudo apt install -y cmake build-essential libunwind-dev \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev \
-        spirv-tools glslang-tools libspirv-cross-c-shared-dev
+        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2
+
+    - name: Setup Vulkan Headers
+      run: |
         VULKANVER=1.3.259
         curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
         tar -xf Vulkan-Headers*.tar.gz
@@ -37,8 +45,8 @@ jobs:
 
     - name: Package RPCSX AppImage
       run: |
-        chmod +x .github/assets/appimage.sh
-        .github/assets/appimage.sh
+        chmod +x ci/.github/assets/appimage.sh
+        ci/.github/assets/appimage.sh
         mkdir -p artifacts
         cp rpcsx.AppImage artifacts/
 
