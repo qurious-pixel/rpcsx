@@ -42,6 +42,7 @@ jobs:
       run: |
         cmake -B build && \
         cmake --build build -j4
+        ls -al build
 
     - name: Package RPCSX AppImage
       run: |
