@@ -2,7 +2,7 @@ BINNAME=rpcsx
 curl -sSfL https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -o appimagetool
 
 mkdir -p AppDir/usr/bin
-cp build/bin AppDir/usr/
+cp -r build/bin AppDir/usr/
 chmod +x AppDir/usr/bin
 ln -sr AppDir/usr/bin/Mesen AppDir/AppRun
 
