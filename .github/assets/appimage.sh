@@ -4,7 +4,7 @@ curl -sSfL https://github.com/AppImage/AppImageKit/releases/download/continuous/
 mkdir -p AppDir/usr/bin
 cp -r build/bin AppDir/usr/
 chmod +x AppDir/usr/bin
-ln -sr AppDir/usr/bin/${BINNAME} AppDir/AppRun
+#ln -sr AppDir/usr/bin/${BINNAME} AppDir/AppRun
 
 cp ci/.github/assets/${BINNAME}.png AppDir/
 cp ci/.github/assets/${BINNAME}.desktop AppDir/
