@@ -54,6 +54,6 @@ jobs:
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
       with:
-        name: rpcsx-bin
+        name: rpcsx
         path: artifacts
         if-no-files-found: error
