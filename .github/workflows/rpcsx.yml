@@ -11,6 +11,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
+        repository: RPCSX/rpcsx
+        ref: master
         submodules: recursive
 
     - name: Setup dependencies
@@ -33,9 +35,16 @@ jobs:
         cmake -B build && \
         cmake --build build -j4
 
+    - name: Package RPCSX AppImage
+      run: |
+        chmod +x .github/assets/appimage.sh
+        .github/assets/appimage.sh
+        mkdir -p artifacts
+        cp rpcsx.AppImage artifacts/
+
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
       with:
         name: rpcsx-bin
-        path: build/bin/*
+        path: artifacts
         if-no-files-found: error
