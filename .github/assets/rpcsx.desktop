@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=RPCSX
+GenericName=PlayStation 4/5 Emulator
+Comment=An open-source PlayStation 4/5 emulator/debugger written in C++.
+Icon=rpcsx
+TryExec=rpcsx-os
