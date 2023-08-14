@@ -18,8 +18,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        repository: RPCSX/rpcsx # qurious-pixel/rpcsx # 
-        ref: dce66744bd66eba537288f5305001421be4b1791 # master # submodules # 
+        repository: abouvier/rpcsx # RPCSX/rpcsx # qurious-pixel/rpcsx # 
+        ref: sox-fix # master # submodules # 
         submodules: recursive
 
     - name: Setup SPIRV-Cross
@@ -32,8 +32,9 @@ jobs:
 
     - name: RPCSX (Fixes)
       run: |
-        sed -i 's/0x0000010000000000/0x0000010000000000,--no-relax/g' rpcsx-os/CMakeLists.txt
-        #sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
+        echo "Fixes"
+        #sed -i 's/0x0000010000000000/0x0000010000000000,--no-relax/g' rpcsx-os/CMakeLists.txt
+        sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
         
     - name: Build RPCSX
       run: |
