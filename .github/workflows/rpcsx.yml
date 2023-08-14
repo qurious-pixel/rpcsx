@@ -17,10 +17,10 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
-      #with:
-        #repository: qurious-pixel/rpcsx # RPCSX/rpcsx
-        #ref: devel # master # submodules # 
-        #submodules: recursive
+      with:
+        repository: RPCSX/rpcsx # qurious-pixel/rpcsx # 
+        ref: dce66744bd66eba537288f5305001421be4b1791 # master # submodules # 
+        submodules: recursive
 
     - name: Setup SPIRV-Cross
       run: |
