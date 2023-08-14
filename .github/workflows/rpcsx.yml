@@ -20,7 +20,7 @@ jobs:
       with:
         #repository: qurious-pixel/rpcsx # RPCSX/rpcsx
         #ref: devel # master # submodules # 
-        submodules: recursive
+        #submodules: recursive
 
     - name: Setup SPIRV-Cross
       run: |
