@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Setup dependencies
       run: |
-        sudo dnf install -y git cmake gcc-c++ gcc libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel spirv-tools glslang-devel spirv-tools-devel xbyak-devel
+        sudo dnf install -y git cmake gcc-c++ gcc libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel libsox-dev spirv-tools glslang-devel spirv-tools-devel xbyak-devel
         git config --global --add safe.directory '*'
 
     - name: Checkout
