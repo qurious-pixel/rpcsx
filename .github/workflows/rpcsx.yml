@@ -32,7 +32,7 @@ jobs:
 
     - name: RPCSX (Fixes)
       run: |
-        sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
+        #sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
         
     - name: Build RPCSX
       run: |
