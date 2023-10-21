@@ -25,7 +25,7 @@ jobs:
         sudo apt update
         sudo apt install -y cmake build-essential libunwind-dev \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev libsox-dev \
-        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2
+        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 ninja-build
 
     - name: Setup Vulkan Headers
       run: |
@@ -40,7 +40,7 @@ jobs:
 
     - name: Build RPCSX
       run: |
-        cmake -B build && \
+        cmake -Bbuild -GNinja && \
         cmake --build build -j4
         ls -al build
 
