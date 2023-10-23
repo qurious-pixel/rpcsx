@@ -1,0 +1,14 @@
+#!/bin/bash
+
+RPCSX_DATA_DIR=~/.local/share/rpcsx
+mkdir -p $RPCSX_DATA_DIR
+
+FIRMWARE_PATH_SET=$(grep FIRMWARE_PATH $RPCSX_DATA_DIR/rpcsx.config | awk '{print $2}')
+GAME_PATH_SET=$(grep GAME_PATH $RPCSX_DATA_DIR/rpcsx.config | awk '{print $2}')
+
+FIRMWARE_PATH=$(yad --file-selection --directory --title="Select firmware directory" --filename=$FIRMWARE_PATH_SET)
+GAME_PATH=$(yad --file-selection --directory --title="Select game directory" --filename=$GAME_PATH_SET)
+echo "FIRMWARE_PATH $FIRMWARE_PATH" > $RPCSX_DATA_DIR/rpcsx.config
+echo "GAME_PATH $GAME_PATH" >> $RPCSX_DATA_DIR/rpcsx.config
+
+$APPDIR/usr/bin/rpcsx-os --mount "$FIRMWARE_PATH" /system --mount $RPCSX_DATA_DIR/data /data --mount "$GAME_PATH" /app0 /app0/${EBOOT:=eboot.bin}
