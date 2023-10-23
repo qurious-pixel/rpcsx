@@ -38,6 +38,15 @@ jobs:
         make -j$(nproc)
         sudo make install
 
+    - name: Setup SPIRV Cross
+      run: |
+        git clone https://github.com/KhronosGroup/SPIRV-Cross 
+        cd SPIRV-Cross 
+        mkdir build && cd build 
+        cmake .. 
+        cmake --build . 
+        sudo make install
+
     - name: Build RPCSX
       run: |
         cmake -Bbuild -GNinja && \
