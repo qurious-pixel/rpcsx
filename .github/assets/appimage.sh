@@ -4,8 +4,9 @@ curl -sSfL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuo
 
 mkdir -p AppDir/usr/bin
 cp -r build/bin AppDir/usr/
+cp ci/.github/assets/AppRun AppDir/
 chmod +x AppDir/usr/bin
-ln -sr AppDir/usr/bin/${BINNAME}-os AppDir/AppRun
+chmod +x AppDir/AppRun
 
 chmod a+x appimagetool linuxdeploy
 ARCH=x86_64 ./linuxdeploy --appdir=AppDir
