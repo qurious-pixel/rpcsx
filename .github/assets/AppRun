@@ -7,8 +7,8 @@ FIRMWARE_PATH_SET=$(grep FIRMWARE_PATH $RPCSX_DATA_DIR/rpcsx.config | awk '{prin
 GAME_PATH_SET=$(grep GAME_PATH $RPCSX_DATA_DIR/rpcsx.config | awk '{print $2}')
 
 YAD=$APPDIR/usr/bin/yad
-FIRMWARE_PATH=$($YAD --file-selection --directory --title="Select firmware directory" --filename=$FIRMWARE_PATH_SET)
-GAME_PATH=$($YAD --file-selection --directory --title="Select game directory" --filename=$GAME_PATH_SET)
+FIRMWARE_PATH=$($YAD --file-selection --directory --title="Select firmware directory" --window-icon=$APPDIR/rpcsx.png --filename=$FIRMWARE_PATH_SET)
+GAME_PATH=$($YAD --file-selection --directory --title="Select game directory" --window-icon=$APPDIR/rpcsx.png --filename=$GAME_PATH_SET)
 echo "FIRMWARE_PATH $FIRMWARE_PATH" > $RPCSX_DATA_DIR/rpcsx.config
 echo "GAME_PATH $GAME_PATH" >> $RPCSX_DATA_DIR/rpcsx.config
 
