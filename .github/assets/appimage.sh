@@ -5,6 +5,7 @@ curl -sSfL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuo
 mkdir -p AppDir/usr/bin
 cp -r build/bin AppDir/usr/
 cp ci/.github/assets/AppRun AppDir/
+cp /usr/bin/yad AppDir/usr/bin/
 chmod +x AppDir/usr/bin
 chmod +x AppDir/AppRun
 
