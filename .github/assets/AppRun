@@ -3,8 +3,8 @@
 RPCSX_DATA_DIR=~/.local/share/rpcsx
 mkdir -p $RPCSX_DATA_DIR/data
 
-FIRMWARE_PATH_SET=$(grep FIRMWARE_PATH $RPCSX_DATA_DIR/rpcsx.config | awk '{print $2}')
-GAME_PATH_SET=$(grep GAME_PATH $RPCSX_DATA_DIR/rpcsx.config | awk '{print $2}')
+FIRMWARE_PATH_SET=$(grep FIRMWARE_PATH $RPCSX_DATA_DIR/rpcsx.config 2>/dev/null | awk '{print $2}')
+GAME_PATH_SET=$(grep GAME_PATH $RPCSX_DATA_DIR/rpcsx.config 2>/dev/null | awk '{print $2}')
 
 YAD=$APPDIR/usr/bin/yad
 FIRMWARE_PATH=$($YAD --file-selection --directory --title="Select firmware directory" --window-icon=$APPDIR/rpcsx.png --filename=$FIRMWARE_PATH_SET)
