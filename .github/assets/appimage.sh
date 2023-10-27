@@ -7,8 +7,8 @@ mkdir -p AppDir/usr/bin
 cp -r build/bin AppDir/usr/
 #cp ci/.github/assets/AppRun AppDir/ 
 cp ui/rpcsx-ui AppDir/usr/bin/
-ln -s AppDir/usr/bin/rpcsx-ui AppDir/AppRun
-cp /usr/bin/yad AppDir/usr/bin/
+ln -sr AppDir/usr/bin/rpcsx-ui AppDir/AppRun
+#cp /usr/bin/yad AppDir/usr/bin/
 chmod +x AppDir/usr/bin
 chmod +x AppDir/AppRun
 
