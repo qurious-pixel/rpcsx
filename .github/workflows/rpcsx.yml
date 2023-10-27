@@ -64,6 +64,7 @@ jobs:
     - name: Build RPCSX UI
       run: |
         cd ui/
+        qmake
         make -j4
         ls -al
         
