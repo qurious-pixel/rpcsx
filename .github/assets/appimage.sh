@@ -21,5 +21,5 @@ mkdir -p AppDir/usr/share/applications && cp ./AppDir/${BINNAME}.desktop ./AppDi
 mkdir -p AppDir/usr/share/icons && cp ./AppDir/${BINNAME}.png ./AppDir/usr/share/icons
 mkdir -p AppDir/usr/share/icons/hicolor/512x512/apps && cp ./AppDir/${BINNAME}.png ./AppDir/usr/share/icons/hicolor/512x512/apps
 
-ARCH=x86_64 ./linuxdeployqt --appdir AppDir/
+QMAKE=/usr/lib/qt6/bin/qmake ARCH=x86_64 ./linuxdeployqt --appdir AppDir/
 ARCH=x86_64 ./appimagetool AppDir/ ${BINNAME}.AppImage
