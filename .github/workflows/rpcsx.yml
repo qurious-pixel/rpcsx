@@ -23,6 +23,7 @@ jobs:
 
     - name: Pre-Format
       run: |
+        clang-format -style=llvm -dump-config > .clang-format
         find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
         
     - name: Setup dependencies
