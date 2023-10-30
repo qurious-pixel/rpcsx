@@ -21,6 +21,10 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Pre-Format
+      run: |
+        find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
+        
     - name: Setup dependencies
       run: |
         sudo apt update
