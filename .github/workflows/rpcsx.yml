@@ -1,6 +1,7 @@
 name: Build RPCSX
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
