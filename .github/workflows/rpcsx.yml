@@ -7,9 +7,9 @@ on:
 jobs:
   build-rpcsx:
     runs-on: ubuntu-latest
-    env:
-      CC: clang-15
-      CXX: clang-15
+    #env:
+    #  CC: clang-15
+    #  CXX: clang-15
     steps:
 
     - name: Checkout
@@ -56,7 +56,10 @@ jobs:
         cmake -Bbuild -GNinja -DCMAKE_CXX_STANDARD=17 && \
         cmake --build build -j4
         ls -al build
-
+      env:
+        CC: clang-15
+        CXX: clang-15
+    
     - name: Package RPCSX AppImage
       run: |
         chmod +x ci/.github/assets/appimage.sh
