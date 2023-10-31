@@ -25,7 +25,7 @@ jobs:
         sudo apt update
         sudo apt install -y cmake build-essential libunwind-dev libstdc++-11-dev \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev libsox-dev yad \
-        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 ninja-build
+        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 ninja-build libc++-14-dev
 
     - name: Setup Vulkan Headers
       run: |
