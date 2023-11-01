@@ -18,8 +18,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        repository: abouvier/rpcsx # RPCSX/rpcsx # qurious-pixel/rpcsx # 
-        ref: sox-fix # master # submodules # 
+        repository: qurious-pixel/rpcsx # abouvier/rpcsx # RPCSX/rpcsx # 
+        ref: submodules # sox-fix # master # 
         submodules: recursive
 
     - name: Setup SPIRV-Cross
