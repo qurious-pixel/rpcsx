@@ -22,13 +22,13 @@ jobs:
         ref: submodules # sox-fix # master # 
         submodules: recursive
 
-    - name: Setup SPIRV-Cross
-      run: |
-        git clone https://github.com/KhronosGroup/SPIRV-Cross 
-        cd SPIRV-Cross 
-        mkdir build && cd build 
-        cmake .. && cmake --build . 
-        sudo make install
+    #- name: Setup SPIRV-Cross
+    #  run: |
+    #    git clone https://github.com/KhronosGroup/SPIRV-Cross 
+    #    cd SPIRV-Cross 
+    #    mkdir build && cd build 
+    #    cmake .. && cmake --build . 
+    #    sudo make install
 
     - name: RPCSX (Fixes)
       run: |
