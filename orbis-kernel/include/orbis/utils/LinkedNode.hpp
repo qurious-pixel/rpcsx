@@ -1,48 +1,59 @@
 #pragma once
 
-namespace orbis {
-inline namespace utils {
-template <typename T> struct LinkedNode final {
-  T object;
-  LinkedNode *next = nullptr;
-  LinkedNode *prev = nullptr;
+namespace orbis
+{
+	inline namespace utils
+	{
+		template <typename T>
+		struct LinkedNode final
+		{
+			T object;
+			LinkedNode* next = nullptr;
+			LinkedNode* prev = nullptr;
 
-  void insertNext(LinkedNode &other) {
-    other.next = next;
-    other.prev = this;
+			void insertNext(LinkedNode& other)
+			{
+				other.next = next;
+				other.prev = this;
 
-    if (next != nullptr) {
-      next->prev = &other;
-    }
+				if (next != nullptr)
+				{
+					next->prev = &other;
+				}
 
-    next = &other;
-  }
+				next = &other;
+			}
 
-  void insertPrev(LinkedNode &other) {
-    other.next = this;
-    other.prev = prev;
+			void insertPrev(LinkedNode& other)
+			{
+				other.next = this;
+				other.prev = prev;
 
-    if (prev != nullptr) {
-      prev->next = &other;
-    }
+				if (prev != nullptr)
+				{
+					prev->next = &other;
+				}
 
-    prev = &other;
-  }
+				prev = &other;
+			}
 
-  LinkedNode *erase() {
-    if (prev != nullptr) {
-      prev->next = next;
-    }
+			LinkedNode* erase()
+			{
+				if (prev != nullptr)
+				{
+					prev->next = next;
+				}
 
-    if (next != nullptr) {
-      next->prev = prev;
-    }
+				if (next != nullptr)
+				{
+					next->prev = prev;
+				}
 
-    prev = nullptr;
-    auto result = next;
-    next = nullptr;
-    return result;
-  }
-};
-} // namespace utils
+				prev = nullptr;
+				auto result = next;
+				next = nullptr;
+				return result;
+			}
+		};
+	} // namespace utils
 } // namespace orbis

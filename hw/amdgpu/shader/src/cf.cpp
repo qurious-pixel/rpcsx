@@ -3,115 +3,133 @@
 #include <cstdlib>
 #include <unordered_set>
 
-void cf::BasicBlock::split(BasicBlock *target) {
-  assert(target->address > address);
-  target->size = size - (target->address - address);
-  size = target->address - address;
+void cf::BasicBlock::split(BasicBlock* target)
+{
+	assert(target->address > address);
+	target->size = size - (target->address - address);
+	size = target->address - address;
 
-  for (std::size_t i = 0, count = getSuccessorsCount(); i < count; ++i) {
-    auto succ = getSuccessor(i);
-    succ->predecessors.erase(this);
-    succ->predecessors.insert(target);
-    target->successors[i] = successors[i];
-    successors[i] = nullptr;
-  }
+	for (std::size_t i = 0, count = getSuccessorsCount(); i < count; ++i)
+	{
+		auto succ = getSuccessor(i);
+		succ->predecessors.erase(this);
+		succ->predecessors.insert(target);
+		target->successors[i] = successors[i];
+		successors[i] = nullptr;
+	}
 
-  target->terminator = terminator;
-  terminator = TerminatorKind::None;
+	target->terminator = terminator;
+	terminator = TerminatorKind::None;
 
-  createBranch(target);
+	createBranch(target);
 }
 
-void cf::BasicBlock::createConditionalBranch(BasicBlock *ifTrue,
-                                             BasicBlock *ifFalse) {
-  assert(terminator == TerminatorKind::None);
-  assert(getSuccessorsCount() == 0);
-  ifTrue->predecessors.insert(this);
-  ifFalse->predecessors.insert(this);
+void cf::BasicBlock::createConditionalBranch(BasicBlock* ifTrue,
+	BasicBlock* ifFalse)
+{
+	assert(terminator == TerminatorKind::None);
+	assert(getSuccessorsCount() == 0);
+	ifTrue->predecessors.insert(this);
+	ifFalse->predecessors.insert(this);
 
-  successors[0] = ifTrue;
-  successors[1] = ifFalse;
+	successors[0] = ifTrue;
+	successors[1] = ifFalse;
 
-  terminator = TerminatorKind::Branch;
+	terminator = TerminatorKind::Branch;
 }
 
-void cf::BasicBlock::createBranch(BasicBlock *target) {
-  assert(terminator == TerminatorKind::None);
-  assert(getSuccessorsCount() == 0);
+void cf::BasicBlock::createBranch(BasicBlock* target)
+{
+	assert(terminator == TerminatorKind::None);
+	assert(getSuccessorsCount() == 0);
 
-  target->predecessors.insert(this);
-  successors[0] = target;
+	target->predecessors.insert(this);
+	successors[0] = target;
 
-  terminator = TerminatorKind::Branch;
+	terminator = TerminatorKind::Branch;
 }
 
-void cf::BasicBlock::createBranchToUnknown() {
-  assert(terminator == TerminatorKind::None);
-  assert(getSuccessorsCount() == 0);
+void cf::BasicBlock::createBranchToUnknown()
+{
+	assert(terminator == TerminatorKind::None);
+	assert(getSuccessorsCount() == 0);
 
-  terminator = TerminatorKind::BranchToUnknown;
+	terminator = TerminatorKind::BranchToUnknown;
 }
 
-void cf::BasicBlock::createReturn() {
-  assert(terminator == TerminatorKind::None);
-  assert(getSuccessorsCount() == 0);
+void cf::BasicBlock::createReturn()
+{
+	assert(terminator == TerminatorKind::None);
+	assert(getSuccessorsCount() == 0);
 
-  terminator = TerminatorKind::Return;
+	terminator = TerminatorKind::Return;
 }
 
-void cf::BasicBlock::replaceSuccessor(BasicBlock *origBB, BasicBlock *newBB) {
-  origBB->predecessors.erase(this);
-  newBB->predecessors.insert(this);
+void cf::BasicBlock::replaceSuccessor(BasicBlock* origBB, BasicBlock* newBB)
+{
+	origBB->predecessors.erase(this);
+	newBB->predecessors.insert(this);
 
-  if (origBB == successors[0]) {
-    successors[0] = newBB;
-    return;
-  }
+	if (origBB == successors[0])
+	{
+		successors[0] = newBB;
+		return;
+	}
 
-  if (origBB == successors[1]) {
-    successors[1] = newBB;
-    return;
-  }
+	if (origBB == successors[1])
+	{
+		successors[1] = newBB;
+		return;
+	}
 
-  std::abort();
+	std::abort();
 }
 
-bool cf::BasicBlock::hasDirectPredecessor(const BasicBlock &block) const {
-  for (auto pred : predecessors) {
-    if (pred == &block) {
-      return true;
-    }
-  }
+bool cf::BasicBlock::hasDirectPredecessor(const BasicBlock& block) const
+{
+	for (auto pred : predecessors)
+	{
+		if (pred == &block)
+		{
+			return true;
+		}
+	}
 
-  return false;
+	return false;
 }
 
-bool cf::BasicBlock::hasPredecessor(const BasicBlock &block) const {
-  if (&block == this) {
-    return hasDirectPredecessor(block);
-  }
+bool cf::BasicBlock::hasPredecessor(const BasicBlock& block) const
+{
+	if (&block == this)
+	{
+		return hasDirectPredecessor(block);
+	}
 
-  std::vector<const BasicBlock *> workList;
-  std::unordered_set<const BasicBlock *> visited;
-  workList.push_back(this);
-  visited.insert(this);
+	std::vector<const BasicBlock*> workList;
+	std::unordered_set<const BasicBlock*> visited;
+	workList.push_back(this);
+	visited.insert(this);
 
-  while (!workList.empty()) {
-    auto node = workList.back();
+	while (!workList.empty())
+	{
+		auto node = workList.back();
 
-    if (node == &block) {
-      return true;
-    }
+		if (node == &block)
+		{
+			return true;
+		}
 
-    workList.pop_back();
-    workList.reserve(workList.size() + predecessors.size());
+		workList.pop_back();
+		workList.reserve(workList.size() + predecessors.size());
 
-    for (auto pred : predecessors) {
-      if (visited.insert(pred).second) {
-        workList.push_back(pred);
-      }
-    }
-  }
+		for (auto pred : predecessors)
+		{
+			if (visited.insert(pred).second)
+			{
+				workList.push_back(pred);
+			}
+		}
+	}
 
-  return false;
+	return false;
 }
