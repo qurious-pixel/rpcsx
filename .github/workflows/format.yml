@@ -22,10 +22,10 @@ jobs:
       with:
         repository: RPCSX/rpcsx
         ref: master
-    - name: Pre-Format
-      run: |
-        clang-format -style=llvm -dump-config > .clang-format
-        find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
+    #- name: Pre-Format
+    #  run: |
+    #    clang-format -style=llvm -dump-config > .clang-format
+    #    find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
     - name: Run clang-format
       uses: jidicula/clang-format-action@v4.11.0
       with:
