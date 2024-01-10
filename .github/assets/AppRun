@@ -4,6 +4,7 @@ cp -r $APPDIR/usr/share/vulkan "$HOME/.local/share"
 ln -sf $APPDIR/usr/lib/mangohud/lib64/ /tmp/mangohud
 export LD_PRELOAD=/tmp/mangohud/libMangoHud.so
 export MANGOHUD=1
+export PATH="$APPDIR/usr/bin/:$PATH"
 
-$APPDIR/usr/bin/rpcsx-ui
+rpcsx-ui
 unlink /tmp/mangohud
