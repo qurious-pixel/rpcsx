@@ -1,15 +1,9 @@
 #!/bin/bash
 
-RPCSX_DATA_DIR=~/.local/share/rpcsx
-mkdir -p $RPCSX_DATA_DIR/data
+cp -r $APPDIR/usr/share/vulkan "$HOME/.local/share"
+ln -sf $APPDIR/usr/lib/mangohud/lib64/ /tmp/mangohud
+export LD_PRELOAD=/tmp/mangohud/libMangoHud.so
+export MANGOHUD=1
 
-FIRMWARE_PATH_SET=$(grep FIRMWARE_PATH $RPCSX_DATA_DIR/rpcsx.config 2>/dev/null | awk '{print $2}')
-GAME_PATH_SET=$(grep GAME_PATH $RPCSX_DATA_DIR/rpcsx.config 2>/dev/null | awk '{print $2}')
-
-YAD=$APPDIR/usr/bin/yad
-FIRMWARE_PATH=$($YAD --file-selection --directory --title="Select firmware directory" --window-icon=$APPDIR/rpcsx.png --filename=$FIRMWARE_PATH_SET)
-GAME_PATH=$($YAD --file-selection --directory --title="Select game directory" --window-icon=$APPDIR/rpcsx.png --filename=$GAME_PATH_SET)
-echo "FIRMWARE_PATH $FIRMWARE_PATH" > $RPCSX_DATA_DIR/rpcsx.config
-echo "GAME_PATH $GAME_PATH" >> $RPCSX_DATA_DIR/rpcsx.config
-
-$APPDIR/usr/bin/rpcsx-os --mount "$FIRMWARE_PATH" /system --mount $RPCSX_DATA_DIR/data /data --mount "$GAME_PATH" /app0 /app0/${EBOOT:=eboot.bin}
+$APPDIR/usr/bin/rpcsx-ui
+unlink /tmp/mangohud
