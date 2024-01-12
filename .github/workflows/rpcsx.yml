@@ -37,7 +37,7 @@ jobs:
 
     - name: Setup Vulkan Headers
       run: |
-        VULKANVER=1.3.259 # 269
+        VULKANVER=1.3.269
         curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
         tar -xf Vulkan-Headers*.tar.gz
         cd Vulkan-Headers*/ 
@@ -46,14 +46,14 @@ jobs:
         make -j$(nproc)
         sudo make install
 
-    - name: Setup SPIRV Cross
-      run: |
-        git clone https://github.com/KhronosGroup/SPIRV-Cross 
-        cd SPIRV-Cross 
-        mkdir build && cd build 
-        cmake .. 
-        cmake --build . 
-        sudo make install
+    #- name: Setup SPIRV Cross
+    #  run: |
+    #    git clone https://github.com/KhronosGroup/SPIRV-Cross 
+    #    cd SPIRV-Cross 
+    #    mkdir build && cd build 
+    #    cmake .. 
+    #    cmake --build . 
+    #    sudo make install
 
     - name: Build RPCSX
       run: |
