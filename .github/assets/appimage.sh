@@ -14,6 +14,7 @@ chmod +x AppDir/usr/bin
 chmod +x AppDir/AppRun
 
 chmod a+x appimagetool linuxdeploy linuxdeployqt
+export NO_STRIP=1 
 ARCH=x86_64 ./linuxdeploy --appdir=AppDir
 
 cp ci/.github/assets/${BINNAME}.png AppDir/
