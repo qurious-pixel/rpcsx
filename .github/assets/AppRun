@@ -2,9 +2,10 @@
 
 cp -r $APPDIR/usr/share/vulkan "$HOME/.local/share"
 ln -sf $APPDIR/usr/lib/mangohud/lib64/ /tmp/mangohud
+export LD_LIBRARY_PATH="$APPDIR/usr/lib/:$LD_LIBRARY_PATH"
 export LD_PRELOAD=/tmp/mangohud/libMangoHud.so
-export MANGOHUD=1
 export PATH="$APPDIR/usr/bin/:$PATH"
+export MANGOHUD=1
 
 rpcsx-ui
 unlink /tmp/mangohud
