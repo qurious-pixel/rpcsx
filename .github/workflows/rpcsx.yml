@@ -73,6 +73,7 @@ jobs:
         ci/.github/assets/appimage.sh
         mkdir -p artifacts
         cp rpcsx.AppImage artifacts/
+        cp build/bin/rpcsx-* artifacts/
 
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
