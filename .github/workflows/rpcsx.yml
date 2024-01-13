@@ -57,7 +57,7 @@ jobs:
 
     - name: Build RPCSX
       run: |
-        cmake -Bbuild -GNinja && \
+        cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -GNinja && \
         cmake --build build -j4
         ls -al build/bin
 
@@ -73,7 +73,7 @@ jobs:
         ci/.github/assets/appimage.sh
         mkdir -p artifacts
         cp rpcsx.AppImage artifacts/
-        cp build/bin/rpcsx-* artifacts/
+        #cp build/bin/rpcsx-* artifacts/
 
     - name: Upload RPCSX
       uses: actions/upload-artifact@v3
