@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: RPCSX/rpcsx # qurious-pixel/rpcsx # 
-        ref: master # devel # v20231111 # 
+        ref: v20231111 # master # devel # 
         submodules: recursive
     - name: Checkout AppImage Repo
       uses: actions/checkout@v3
