@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: qurious-pixel/RPCSX_UI_REDESIGN
-        ref: game_name
+        ref: new_ui
         clean: false
         path: ui
           
