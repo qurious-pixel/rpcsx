@@ -7,6 +7,11 @@ set(SRC
 
 FetchContent_MakeAvailable(spirv-cross)
 FetchContent_GetProperties(spirv-cross)
+if(NOT spirv-cross_POPULATED)
+    FetchContent_Populate(spirv-cross)
+    add_library(spirv-cross INTERFACE)
+    target_include_directories(spirv-cross INTERFACE ${spirv-cross_SOURCE_DIR})
+endif()
 
 function(add_precompiled_vulkan_spirv target)
     add_library(${target} INTERFACE)
