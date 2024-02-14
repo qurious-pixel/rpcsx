@@ -5,6 +5,8 @@ set(SRC
     src/device.cpp
 )
 
+FetchContent_MakeAvailable(spirv-cross)
+
 function(add_precompiled_vulkan_spirv target)
     add_library(${target} INTERFACE)
     set(SPIRV_GEN_ROOT_DIR "spirv-gen/include/")
