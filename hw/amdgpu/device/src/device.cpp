@@ -19,7 +19,7 @@
 #include <set>
 #include <shaders/rect_list.geom.h>
 #include <span>
-#include <spirv_cross/spirv_glsl.hpp>
+#include <spirv_glsl.hpp>
 #include <sys/mman.h>
 #include <unistd.h>
 #include <util/VerifyVulkan.hpp>
