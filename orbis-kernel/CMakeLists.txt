@@ -71,7 +71,6 @@ add_library(obj.orbis-kernel OBJECT
   src/utils/Logs.cpp
 )
 
-include_directories(/usr/include/sox)
 target_link_libraries(obj.orbis-kernel PUBLIC orbis::kernel::config $<TARGET_OBJECTS:obj.orbis-utils-ipc> sox)
 
 target_include_directories(obj.orbis-kernel
@@ -80,6 +79,7 @@ target_include_directories(obj.orbis-kernel
 
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include/orbis
+        /usr/include/sox
 )
 
 target_include_directories(obj.orbis-utils-ipc
