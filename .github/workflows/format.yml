@@ -1,11 +1,7 @@
 name: Formatting check
 
 on:
-  push:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
-      - '3rdparty/*'
+  #push:
   pull_request:
     paths-ignore:
       - "**/*.md"
