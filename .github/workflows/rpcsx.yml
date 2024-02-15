@@ -1,44 +1,36 @@
 name: Build RPCSX
 
 on:
-  push:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
-  pull_request:
-    paths-ignore:
-      - "**/*.md"
-      - '**/*.txt'
+  #push:
   workflow_dispatch:
 
 jobs:
   build-rpcsx:
     runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
     steps:
+    - name: Setup dependencies
+      run: |
+        sudo dnf install -y git cmake gcc-c++ gcc libunwind-devel glfw-devel vulkan-devel vulkan-validation-layers-devel sox-devel spirv-tools glslang-devel spirv-tools-devel xbyak-devel
+        git config --global --add safe.directory '*'
 
     - name: Checkout
       uses: actions/checkout@v3
       with:
+        repository: qurious-pixel/rpcsx # abouvier/rpcsx # RPCSX/rpcsx # 
+        ref: submodules # master # fedora # 
         submodules: recursive
 
-    - name: Setup dependencies
+    - name: RPCSX (Fixes)
       run: |
-        sudo apt update
-        sudo apt install -y cmake build-essential libunwind-dev \
-        libglfw3-dev libvulkan-dev vulkan-validationlayers-dev \
-        spirv-tools glslang-tools libspirv-cross-c-shared-dev libsox-dev
-        VULKANVER=1.3.259
-        curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
-        tar -xf Vulkan-Headers*.tar.gz
-        cd Vulkan-Headers*/ 
-        mkdir build && cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
-        make -j$(nproc)
-        sudo make install
-
+        echo "Fixes"
+        #sed -i 's/0x0000010000000000/0x0000010000000000,--no-relax/g' rpcsx-os/CMakeLists.txt
+        #sed -i 's/target_link_options/#target_link_options/g' rpcsx-os/CMakeLists.txt
+        
     - name: Build RPCSX
       run: |
-        cmake -B build -DCMAKE_BUILD_TYPE=Release && \
+        cmake -B build
         cmake --build build -j4
 
     - name: Upload RPCSX
