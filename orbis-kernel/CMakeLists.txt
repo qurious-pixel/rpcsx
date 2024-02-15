@@ -71,6 +71,7 @@ add_library(obj.orbis-kernel OBJECT
   src/utils/Logs.cpp
 )
 
+include (/usr/include/sox)
 target_link_libraries(obj.orbis-kernel PUBLIC orbis::kernel::config $<TARGET_OBJECTS:obj.orbis-utils-ipc> sox)
 
 target_include_directories(obj.orbis-kernel
