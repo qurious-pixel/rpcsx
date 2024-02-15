@@ -21,15 +21,15 @@ FetchContent_Declare(
   GIT_REPOSITORY "https://github.com/KhronosGroup/SPIRV-Headers.git"
   GIT_TAG "d790ced752b5bfc06b6988baadef6eb2d16bdf96"
   OVERRIDE_FIND_PACKAGE)
-FetchContent_MakeAvailable(SPIRV-Headers)
-#FetchContent_GetProperties(SPIRV-Headers)
-#if(NOT SPIRV-Headers_POPULATED)
-#  FetchContent_Populate(SPIRV-Headers)
-#  add_subdirectory(
-#    ${SPIRV-Headers_SOURCE_DIR}
-#    ${SPIRV-Headers_BINARY_DIR}
-#  )
-#endif()
+#FetchContent_MakeAvailable(SPIRV-Headers)  
+FetchContent_GetProperties(SPIRV-Headers)
+if(NOT SPIRV-Headers_POPULATED)
+  FetchContent_Populate(SPIRV-Headers)
+  add_subdirectory(
+    ${SPIRV-Headers_SOURCE_DIR}
+    ${SPIRV-Headers_BINARY_DIR}
+  )
+endif()
 
 FetchContent_Declare(
   SPIRV-Tools
@@ -40,4 +40,20 @@ set(SPIRV_WERROR off)
 set(SPIRV_SKIP_TESTS on)
 set(SPIRV_SKIP_EXECUTABLES on)
 FetchContent_MakeAvailable(SPIRV-Tools)
+
+FetchContent_Declare(spirv-cross
+	GIT_REPOSITORY https://github.com/KhronosGroup/SPIRV-Cross.git
+    GIT_TAG sdk-1.3.261.1
+    GIT_PROGRESS ON)
+FetchContent_MakeAvailable(spirv-cross)
+include_directories(${spirv-cross_SOURCE_DIR})
+
+#FetchContent_GetProperties(spirv-cross)
+#if(NOT spirv-cross_POPULATED)
+#  FetchContent_Populate(spirv-cross)
+#  add_subdirectory(
+#    ${spirv-cross_SOURCE_DIR}
+#    ${spirv-cross_BINARY_DIR}
+#  )
+#endif()
 
