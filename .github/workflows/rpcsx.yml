@@ -19,6 +19,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
+        repository: qurious-pixel/rpcsx # RPCSX/rpcsx # 
+        ref: fedora # submodules # master # 
         submodules: recursive
 
     - name: Setup dependencies
@@ -27,14 +29,14 @@ jobs:
         sudo apt install -y cmake build-essential libunwind-dev \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev \
         spirv-tools glslang-tools libspirv-cross-c-shared-dev libsox-dev
-        VULKANVER=1.3.259
-        curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
-        tar -xf Vulkan-Headers*.tar.gz
-        cd Vulkan-Headers*/ 
-        mkdir build && cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
-        make -j$(nproc)
-        sudo make install
+        #VULKANVER=1.3.259
+        #curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
+        #tar -xf Vulkan-Headers*.tar.gz
+        #cd Vulkan-Headers*/ 
+        #mkdir build && cd build
+        #cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+        #make -j$(nproc)
+        #sudo make install
 
     - name: Build RPCSX
       run: |
