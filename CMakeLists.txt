@@ -1,10 +1,11 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.24)
 project(rpcsx)
 
 set(CMAKE_CXX_EXTENSIONS off)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include (3rdparty/dependencies.cmake)
 add_subdirectory(3rdparty/crypto EXCLUDE_FROM_ALL)
 add_subdirectory(3rdparty/xbyak EXCLUDE_FROM_ALL)
 add_subdirectory(orbis-kernel)
