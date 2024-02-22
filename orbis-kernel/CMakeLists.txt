@@ -76,10 +76,10 @@ target_link_libraries(obj.orbis-kernel PUBLIC orbis::kernel::config $<TARGET_OBJ
 target_include_directories(obj.orbis-kernel
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-
+        /usr/include/sox
+        
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include/orbis
-        /usr/include/sox
 )
 
 target_include_directories(obj.orbis-utils-ipc
