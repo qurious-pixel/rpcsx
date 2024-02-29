@@ -67,25 +67,25 @@ jobs:
       run: |
         git clone https://github.com/weidai11/cryptopp.git
         cd cryptopp
-        make && sudo make install
+        make -j$(nproc) && sudo make install
 
     - name: Setup Zlib-ng
       run: |
         git clone https://github.com/zlib-ng/zlib-ng.git
         cd zlib-ng
-        ./configure && make && sudo make install
+        ./configure && make -j$(nproc) && sudo make install
 
     - name: Build RPCSX
       run: |
         cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -GNinja && \
-        cmake --build build -j4
+        cmake --build build --parallel
         ls -al build/bin
 
     - name: Build RPCSX UI
       run: |
         cd ui/
         /usr/lib/qt6/bin/qmake
-        CXX=clang++-${{ env.clang_ver }} make -j4
+        CXX=clang++-${{ env.clang_ver }} make -j$(nproc)
         
     - name: Package RPCSX AppImage
       run: |
