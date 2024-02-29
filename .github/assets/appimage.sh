@@ -2,6 +2,8 @@ BINNAME=rpcsx
 curl -sSfL https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -o appimagetool
 curl -sSfL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -o linuxdeploy
 curl -sSfL https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage -o linuxdeployqt
+curl -sSfL https://github.com/linuxdeploy/linuxdeploy-plugin-checkrt/releases/download/continuous/linuxdeploy-plugin-checkrt-x86_64.sh -o checkrt
+
 
 mkdir -p AppDir/usr/bin
 cp -r build/bin AppDir/usr/
@@ -13,9 +15,10 @@ cp -r ui/mangohud/usr AppDir/
 chmod +x AppDir/usr/bin
 chmod +x AppDir/AppRun
 
-chmod a+x appimagetool linuxdeploy linuxdeployqt
+chmod a+x appimagetool linuxdeploy linuxdeployqt checkrt
 #export NO_STRIP=1 
 ARCH=x86_64 ./linuxdeploy --appdir=AppDir
+ARCH=x86_64 ./checkrt --appdir AppDir/
 
 cp -r build/bin AppDir/usr/
 cp ci/.github/assets/${BINNAME}.png AppDir/
