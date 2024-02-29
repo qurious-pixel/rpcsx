@@ -4,21 +4,19 @@ curl -sSfL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuo
 curl -sSfL https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage -o linuxdeployqt
 curl -sSfL https://github.com/linuxdeploy/linuxdeploy-plugin-checkrt/releases/download/continuous/linuxdeploy-plugin-checkrt-x86_64.sh -o checkrt
 
-
 mkdir -p AppDir/usr/bin
 cp -r build/bin AppDir/usr/
-cp ci/.github/assets/AppRun AppDir/ 
+cp ci/.github/assets/AppRun AppDir/AppRun.wrapper 
 cp ui/rpcsx-ui AppDir/usr/bin/
 cp -r ui/mangohud/usr AppDir/
-#ln -sr AppDir/usr/bin/rpcsx-ui AppDir/AppRun
-#cp /usr/bin/yad AppDir/usr/bin/
 chmod +x AppDir/usr/bin
-chmod +x AppDir/AppRun
+chmod +x AppDir/AppRun.wrapper
 
 chmod a+x appimagetool linuxdeploy linuxdeployqt checkrt
-#export NO_STRIP=1 
 ARCH=x86_64 ./linuxdeploy --appdir=AppDir
 ARCH=x86_64 ./checkrt --appdir AppDir/
+# Fix binary launcher
+sed -i '/binary=/c\binary="$appdir"/AppRun.wrapper' AppDir/AppRun
 
 cp -r build/bin AppDir/usr/
 cp ci/.github/assets/${BINNAME}.png AppDir/
