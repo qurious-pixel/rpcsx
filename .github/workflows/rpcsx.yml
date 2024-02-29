@@ -17,12 +17,12 @@ jobs:
         ref: v20231111 # master # devel # 
         submodules: recursive
     - name: Checkout AppImage Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
           clean: false
           path: ci
     - name: Checkout UI Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: qurious-pixel/RPCSX_UI_REDESIGN
         ref: pkg_extract
