@@ -34,11 +34,11 @@ jobs:
         sudo apt update
         sudo apt install -y cmake build-essential libunwind-dev yad \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev libsox-dev \
-        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 ninja-build \
+        spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 \
         qt6-base-dev 
         echo "deb http://azure.archive.ubuntu.com/ubuntu noble main universe" | sudo tee /etc/apt/sources.list
         sudo apt update
-        sudo apt install g++-14
+        sudo apt install g++-14 ninja-build
 
     #- name: Setup Clang
     #  run: |
