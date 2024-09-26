@@ -8,8 +8,8 @@ jobs:
   build-rpcsx:
     runs-on: ubuntu-latest
     env:
-      CC: gcc-11
-      CXX: g++-11
+      CC: gcc-14
+      CXX: g++-14
     steps:
 
     - name: Checkout
@@ -30,6 +30,9 @@ jobs:
         sudo apt install -y cmake build-essential libunwind-dev libstdc++-12-dev \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev libsox-dev yad \
         spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 ninja-build
+        echo "deb http://azure.archive.ubuntu.com/ubuntu noble main universe" | sudo tee /etc/apt/sources.list
+        sudo apt update
+        sudo apt install g++-14 
 
     - name: Setup Vulkan Headers
       run: |
