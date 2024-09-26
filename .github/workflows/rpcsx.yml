@@ -87,7 +87,7 @@ jobs:
       run: |
         cd ui/
         /usr/lib/qt6/bin/qmake
-        CXX=clang++-${{ env.clang_ver }} make -j$(nproc)
+        CXX=g++-14 make -j$(nproc)
         
     - name: Package RPCSX AppImage
       run: |
