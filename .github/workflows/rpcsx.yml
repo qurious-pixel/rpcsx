@@ -56,7 +56,7 @@ jobs:
 
     - name: Build RPCSX
       run: |
-        cmake -Bbuild -GNinja -DCMAKE_CXX_STANDARD=17 && \
+        cmake -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 && \
         cmake --build build -j4
         ls -al build
     
