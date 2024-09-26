@@ -52,10 +52,9 @@ jobs:
         curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
         tar -xf Vulkan-Headers*.tar.gz
         cd Vulkan-Headers*/ 
-        mkdir build && cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_INSTALL_PREFIX=/usr -GNinja
-        make -j$(nproc)
-        sudo make install
+        cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_INSTALL_PREFIX=/usr
+        cmake --build build -j$(($(nproc) + 2))
+        sudo cmake --build build --target install
 
     - name: Setup SPIRV Cross
       run: |
