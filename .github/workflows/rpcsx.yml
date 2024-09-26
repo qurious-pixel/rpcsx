@@ -53,7 +53,7 @@ jobs:
         tar -xf Vulkan-Headers*.tar.gz
         cd Vulkan-Headers*/ 
         mkdir build && cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_INSTALL_PREFIX=/usr
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_INSTALL_PREFIX=/usr -GNinja
         make -j$(nproc)
         sudo make install
 
