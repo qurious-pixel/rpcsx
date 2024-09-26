@@ -7,5 +7,9 @@ export LD_PRELOAD=/tmp/mangohud/libMangoHud.so
 export PATH="$APPDIR/usr/bin/:$PATH"
 export MANGOHUD=1
 
+rm -rf /dev/shm/rpcsx-* && ./rpcsx-gpu2 &
+
 rpcsx-ui
+
 unlink /tmp/mangohud
+trap 'kill $(jobs -pr)' SIGINT SIGTERM EXIT
