@@ -40,11 +40,11 @@ jobs:
         sudo apt update
         sudo apt install g++-14
 
-    - name: Setup Clang
-      run: |
-        wget https://apt.llvm.org/llvm.sh
-        chmod +x ./llvm.sh
-        sudo ./llvm.sh ${{ env.clang_ver }}
+    #- name: Setup Clang
+    #  run: |
+    #    wget https://apt.llvm.org/llvm.sh
+    #    chmod +x ./llvm.sh
+    #    sudo ./llvm.sh ${{ env.clang_ver }}
       
     - name: Setup Vulkan Headers
       run: |
