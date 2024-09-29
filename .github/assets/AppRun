@@ -12,4 +12,4 @@ rm -rf /dev/shm/rpcsx-* && ./rpcsx-gpu2 &
 rpcsx-ui
 
 unlink /tmp/mangohud
-trap 'kill $(jobs -pr)' SIGINT SIGTERM EXIT
+kill $(pgrep rpcsx)
