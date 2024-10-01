@@ -43,7 +43,7 @@ jobs:
     - name: Setup dependencies
       run: |
         sudo apt update
-        sudo apt install -y cmake build-essential libunwind-dev yad \
+        sudo apt install -y cmake ccache build-essential libunwind-dev yad \
         libglfw3-dev libvulkan-dev vulkan-validationlayers-dev libsox-dev \
         spirv-tools glslang-tools libspirv-cross-c-shared-dev libfuse2 \
         qt6-base-dev 
