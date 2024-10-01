@@ -28,7 +28,18 @@ jobs:
         ref: pkg_extract
         clean: false
         path: ui
-          
+
+    - name: Cache CMake Configuration
+      uses: actions/cache@v4 
+      env: 
+          cache-name: ${{ runner.os }}-qt-cache-cmake-configuration
+      with: 
+          path: |  
+            ${{github.workspace}}/build 
+          key: ${{ env.cache-name }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }} 
+          restore-keys: | 
+            ${{ env.cache-name }}- 
+            
     - name: Setup dependencies
       run: |
         sudo apt update
@@ -52,7 +63,7 @@ jobs:
         curl -sSfLo Vulkan-Headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/archive/v${VULKANVER}.tar.gz
         tar -xf Vulkan-Headers*.tar.gz
         cd Vulkan-Headers*/ 
-        cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_INSTALL_PREFIX=/usr
+        cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_INSTALL_PREFIX=/usr
         cmake --build build -j$(($(nproc) + 2))
         sudo cmake --build build --target install
 
@@ -79,7 +90,7 @@ jobs:
 
     - name: Build RPCSX
       run: |
-        cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -GNinja && \
+        cmake -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -GNinja && \
         cmake --build build --parallel
         ls -al build/bin
 
